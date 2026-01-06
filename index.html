@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhikari Veg Restaurant | Luxury Vegetarian Dining</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --gold: #d4af37;
+            --gold-dark: #b8860b;
+            --bg-dark: #050505;
+            --bg-card: #0a0a0a;
+            --text-light: #f1f1f1;
+            --text-gray: #a1a1aa;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --border: rgba(212, 175, 55, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* --- REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo-subtext {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+            color: var(--gold);
+        }
+
+        /* --- HERO --- */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--gold);
+            color: black;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .cta-btn:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- ABOUT --- */
+        #about {
+            background: var(--bg-card);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h4 {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img img {
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .about-img::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        /* --- SERVICES & ATTRIBUTES --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .card {
+            background: #0d0d0d;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .attr-section {
+            border-top: 1px solid var(--border);
+            padding-top: 60px;
+            margin-top: 40px;
+        }
+
+        .attr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .attr-group h5 {
+            color: var(--gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .attr-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .attr-tag {
+            background: rgba(255,255,255,0.05);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+        }
+
+        /* --- LOCATION REDIRECT --- */
+        #location {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #location:hover .location-icon {
+            transform: scale(1.2);
+            color: var(--text-light);
+        }
+
+        .location-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        /* --- FORMS --- */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: #111;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gold);
+            border: none;
+            padding: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: var(--gold-dark);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero-content h1 { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .form-container { padding: 2rem 1.5rem; }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">
+                    <span class="logo-text">Adhikari</span>
+                    <span class="logo-subtext">Veg Restaurant</span>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#reservation">Reservation</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle" onclick="toggleMenu()">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="home">
+        <div class="hero-content reveal">
+            <h4>Welcome to Royalty</h4>
+            <h1>The Art of Luxury <br><span style="color:var(--gold); font-style: italic;">Vegetarian</span> Dining</h1>
+            <p>Experience the finest blend of traditional flavors and royal hospitality in the heart of the city.</p>
+            <a href="#reservation" class="cta-btn">Book a Table</a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <h4>Our Story</h4>
+                    <h2>A Legacy of Pure Flavors</h2>
+                    <p>Adhikari Veg Restaurant is born out of a passion for authentic Indian vegetarian cuisine. We pride ourselves on using farm-fresh ingredients and age-old recipes that have been refined for the modern palate.</p>
+                    <p>Our chefs meticulously craft each dish to ensure a symphony of tastes, textures, and aromas that reflect our commitment to culinary excellence.</p>
+                    <a href="#reservation" style="color:var(--gold); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; border-bottom: 1px solid var(--gold); padding-bottom: 5px;">Visit Us Today</a>
+                </div>
+                <div class="about-img reveal">
+                    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&q=80&w=1200" alt="Exquisite Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                <h2 style="font-size: 3rem;">Premium Services</h2>
+                <p style="color: var(--text-gray);">Crafting experiences beyond just dining.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card reveal">
+                    <i>🍲</i>
+                    <h3>Luxury Dine-in</h3>
+                    <p>Immerse yourself in our royal ambiance with world-class hospitality and service.</p>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.2s;">
+                    <i>🥡</i>
+                    <h3>Premium Takeaway</h3>
+                    <p>Enjoy our signature dishes from the comfort of your home with our luxury packaging.</p>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.4s;">
+                    <i>🚀</i>
+                    <h3>Express Delivery</h3>
+                    <p>Fast, reliable, and hygienic delivery service to your doorstep.</p>
+                </div>
+            </div>
+
+            <!-- ATTRIBUTES SECTION -->
+            <div class="attr-section reveal">
+                <div class="attr-grid">
+                    <div class="attr-group">
+                        <h5>Popular For</h5>
+                        <div class="attr-list">
+                            <span class="attr-tag">Lunch</span>
+                            <span class="attr-tag">Dinner</span>
+                            <span class="attr-tag">Solo Dining</span>
+                        </div>
+                    </div>
+                    <div class="attr-group">
+                        <h5>Offerings</h5>
+                        <div class="attr-list">
+                            <span class="attr-tag">Quick Bite</span>
+                            <span class="attr-tag">Small Plates</span>
+                            <span class="attr-tag">Vegan Options</span>
+                            <span class="attr-tag">Vegetarian Only</span>
+                        </div>
+                    </div>
+                    <div class="attr-group">
+                        <h5>Dining Options</h5>
+                        <div class="attr-list">
+                            <span class="attr-tag">Breakfast</span>
+                            <span class="attr-tag">Lunch</span>
+                            <span class="attr-tag">Dinner</span>
+                            <span class="attr-tag">Dessert</span>
+                            <span class="attr-tag">Table Service</span>
+                        </div>
+                    </div>
+                    <div class="attr-group">
+                        <h5>Amenities</h5>
+                        <div class="attr-list">
+                            <span class="attr-tag">Good for Kids</span>
+                            <span class="attr-tag">Free Parking Lot</span>
+                            <span class="attr-tag">Street Parking</span>
+                            <span class="attr-tag">Google Pay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location" onclick="handleMapRedirect()">
+        <div class="container reveal">
+            <div class="location-icon">📍</div>
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Our Location</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Find us at the heart of the city. Click below to view the exact location on Google Maps.
+            </p>
+            <button class="cta-btn" style="border: none; cursor: pointer;">View Location</button>
+        </div>
+    </section>
+
+    <!-- RESERVATION -->
+    <section id="reservation">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                <h2 style="font-size: 3rem;">Book a Table</h2>
+                <p style="color: var(--text-gray);">Reserve your royal seat in advance.</p>
+            </div>
+            <div class="form-container reveal">
+                <form id="reservationForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="resName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="resPhone" placeholder="+91" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="resDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="time" id="resTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Guests</label>
+                        <select id="resGuests" required>
+                            <option value="1">1 Person</option>
+                            <option value="2" selected>2 Persons</option>
+                            <option value="3">3 Persons</option>
+                            <option value="4">4 Persons</option>
+                            <option value="5+">5+ Persons</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Reserve via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="background: var(--bg-card);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                <h2 style="font-size: 3rem;">Contact Us</h2>
+                <p style="color: var(--text-gray);">We are here to assist you.</p>
+            </div>
+            <div class="form-container reveal">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="contactName" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="contactPhone" placeholder="+91" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Message</label>
+                        <textarea id="contactMessage" rows="5" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <span class="logo-text">Adhikari</span><br>
+                <span class="logo-subtext">Veg Restaurant</span>
+            </div>
+            <div class="social-links">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+                <a href="#">YT</a>
+            </div>
+            <p class="copyright">© <span id="year"></span> Adhikari Veg Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Reveal Animations on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Location Redirect
+        function handleMapRedirect() {
+            window.open("https://www.google.com/maps/place/Adhikari+Veg+Restaurant/@21.1867697,79.0469091,17z/data=!4m15!1m8!3m7!1s0x3bd4c1473811a38d:0x5f2f3c777e6c1bb9!2sAdhikari+Veg+Restaurant!8m2!3d21.1867697!4d79.0469091!10e1!16s%2Fg%2F11wg526sm9!3m5!1s0x3bd4c1473811a38d:0x5f2f3c777e6c1bb9!8m2!3d21.1867697!4d79.0469091!16s%2Fg%2F11wg526sm9", "_blank");
+        }
+
+        // WhatsApp Phone Number
+        const WA_PHONE = "919209278818";
+
+        // Reservation Form Submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('resName').value;
+            const date = document.getElementById('resDate').value;
+            const time = document.getElementById('resTime').value;
+            const guests = document.getElementById('resGuests').value;
+
+            const message = `Hello Adhikari Veg Restaurant, I would like to book a table.\nName: ${name}\nDate: ${date}\nTime: ${time}\nGuests: ${guests}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${WA_PHONE}?text=${encodedMessage}`, "_blank");
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const msg = document.getElementById('contactMessage').value;
+
+            const message = `Message from ${name}:\n${msg}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${WA_PHONE}?text=${encodedMessage}`, "_blank");
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
